@@ -1,7 +1,9 @@
 # node-htmlsanitizer
 A simple wrapper for calling httpsanitzer.org (which itself is a wrapper for calling `bleach.clean` from the python bleach library)
 
+
 # Usage
+Install with `npm install htmlsanitizer`
 
 ## Default options
 
