@@ -1,3 +1,4 @@
+var util = require('util');
 var url = require('url');
 var http = require('http');
 
@@ -23,7 +24,12 @@ sanitize.request = function request(options, callback) {
   http.request(requestOptions, function (res) {
     var fullResponse = '';
     res.on('data', function (buf) { fullResponse += buf });
-    res.on('end', function () { callback(null, fullResponse) });
+    res.on('end', function () {
+      var status = res.statusCode;
+      if (status !== 200)
+        return handleError(status, callback);
+      return callback(null, fullResponse)
+    });
   }).on('error', function (err) {
     return callback(err);
   }).write(json);
@@ -39,6 +45,12 @@ sanitize.prepareJson = function prepareJson(options) {
     return accum;
   }, {})
   return JSON.stringify(result);
+};
+
+function handleError(status, callback) {
+  var msg = 'Request returned %s: %s ';
+  var err = new Error(util.format(msg, status, fullResponse));
+  return callback(err);
 };
 
 function toUnderscore(input) {
