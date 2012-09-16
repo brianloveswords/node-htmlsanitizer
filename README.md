@@ -36,8 +36,8 @@ Install with `npm install htmlsanitizer`
 ```
 
 ```js
-sanitize(String, callback) // use the defaults
-sanitize(Object, callback) // override some or all of the defaults
+htmlsanitizer(String, callback) // use the defaults
+htmlsanitizer(Object, callback) // override some or all of the defaults
 ```
 
 `callback` has the classic signature `function (error, safehtml)`
