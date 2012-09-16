@@ -78,3 +78,12 @@ test('sanitize: strips comments unless specified not to', function (t) {
     t.end();
   });
 });
+
+test('sanitize: should get an error with bad input', function (t) {
+  var input = 'whaaaaaaaat';
+  sanitize({ text: input, attributes: {strong: 'huh'} }, function (err, safe) {
+    t.ok(err, 'should have an error');
+    t.ok(err.message.match(/invalid type/), 'should get the right message');
+    t.end();
+  });
+});

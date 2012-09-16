@@ -27,7 +27,7 @@ sanitize.request = function request(options, callback) {
     res.on('end', function () {
       var status = res.statusCode;
       if (status !== 200)
-        return handleError(status, callback);
+        return handleError(status, fullResponse, callback);
       return callback(null, fullResponse)
     });
   }).on('error', function (err) {
@@ -47,9 +47,9 @@ sanitize.prepareJson = function prepareJson(options) {
   return JSON.stringify(result);
 };
 
-function handleError(status, callback) {
+function handleError(status, response, callback) {
   var msg = 'Request returned %s: %s ';
-  var err = new Error(util.format(msg, status, fullResponse));
+  var err = new Error(util.format(msg, status, response));
   return callback(err);
 };
 
