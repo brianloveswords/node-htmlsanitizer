@@ -29,7 +29,7 @@ A simple wrapper for calling httpsanitzer.org (which itself is a wrapper for cal
   },
   styles: [],
   strip: false,
-  strip_comments: true  
+  stripComments: true  
 }
 ```
 
