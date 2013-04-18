@@ -18,7 +18,7 @@ sanitize.request = function request(options, callback) {
   var requestOptions = url.parse(endpoint);
   requestOptions.headers = {
     'Content-Type': 'application/json',
-    'Content-Length': json.length
+    'Content-Length': Buffer.byteLength(json,'utf8')
   };
   requestOptions.method = 'POST';
   http.request(requestOptions, function (res) {
