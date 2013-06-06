@@ -1,6 +1,6 @@
 {
   "name": "htmlsanitizer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A wrapper for calling htmlsanitizer.org",
   "main": "index.js",
   "scripts": {
